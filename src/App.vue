@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import LeftDrawer from '@/components/LeftDrawer.vue'
 
 const leftDrawerOpen = ref(false)
-const rightDrawerOpen = ref(false)
 
 const toggleLeftDrawer = () => {
 	leftDrawerOpen.value = !leftDrawerOpen.value
@@ -12,40 +12,16 @@ const toggleLeftDrawer = () => {
 
 <template lang="pug">
 q-layout(view="hHh lpR fFf")
-	q-header(bordered)
+	q-header(elevated)
 		q-toolbar
 			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer")
 
 			q-toolbar-title
 				q-avatar
-					img(src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg")
-				|Title
-			RouterLink(to="/about") About
-			RouterLink(to="/") home
-		
+					q-icon.q-mr-sm(name="mdi-shuffle-variant" size="md")
+				|Конструктор BPMN
 
-			q-btn(dense flat round icon="mdi-menu" @click="toggleRightDrawer")
-
-	q-drawer(
-		show-if-above
-		v-model="leftDrawerOpen"
-		side="left"
-		behavior="desktop"
-		bordered)
-
-		p laыдо дфл
-		p laыдо дфл
-		p laыдо дфл
-		p laыдо дфл
-		p laыдо дфл
-		<!-- drawer content -->
-
-	q-drawer(
-		show-if-above
-		v-model="rightDrawerOpen"
-		side="right"
-		bordered)
-			<!-- drawer content -->
+	LeftDrawer(v-model="leftDrawerOpen")
 
 	q-page-container
 		RouterView(v-slot="{ Component, route }")
@@ -53,4 +29,10 @@ q-layout(view="hHh lpR fFf")
 				component(:is="Component")
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.q-header {
+	background: var(--vt-c-indigo);
+	height: 64px;
+	line-height: 64px;
+}
+</style>

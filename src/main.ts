@@ -5,7 +5,7 @@ import { Quasar } from 'quasar'
 import '@quasar/extras/mdi-v7/mdi-v7.css'
 import 'quasar/src/css/index.sass'
 
-import '@/assets/main.css'
+import '@/assets/style/main.css'
 
 import App from './App.vue'
 import router from './router'
