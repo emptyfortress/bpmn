@@ -1,9 +1,10 @@
 <template lang="pug">
-.about
-	h1 This is an about page
-	.green fuck lakjslkajALkj lkjLAk
-	q-btn(unelevated color="primary" label="Отмена" @click="action") 
-	q-input(v-model="model" dense label="Label" filled)
+q-page(padding)
+	.about
+		h1 This is an about page
+		.green fuck lakjslkajALkj lkjLAk
+		q-btn(unelevated color="primary" label="Отмена" @click="action") 
+		q-input(v-model="model" dense label="Label" filled)
 </template>
 
 <style scoped lang="scss">
