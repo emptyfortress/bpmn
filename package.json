@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.16.11",
+    "bpmn-js": "^17.3.0",
     "pinia": "^2.1.7",
     "quasar": "^2.15.3",
     "vue": "^3.4.21",
