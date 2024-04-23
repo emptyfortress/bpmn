@@ -11,11 +11,14 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@quasar/extras": "^1.16.11",
     "pinia": "^2.1.7",
+    "quasar": "^2.15.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@quasar/vite-plugin": "^1.6.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.12.5",
     "@vitejs/plugin-vue": "^5.0.4",
