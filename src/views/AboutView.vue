@@ -1,15 +1,16 @@
 <template lang="pug">
 .about
-	h1 This is an about page fuck
+	h1 This is an about page
+	.green fuck lakjslkajALkj lkjLAk
 </template>
 
 <style scoped lang="scss">
 @media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    color: red;
-  }
+	.about {
+		// min-height: 100vh;
+		// display: flex;
+		// align-items: center;
+		color: red;
+	}
 }
 </style>
