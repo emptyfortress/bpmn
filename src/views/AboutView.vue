@@ -57,9 +57,9 @@ q-page(padding)
 </template>
 
 <style scoped lang="scss">
-// :deep(.bjs-powered-by) {
-// 	display: none;
-// }
+:deep(.bjs-powered-by) {
+	display: none;
+}
 .canvas {
 	width: 100%;
 	height: 800px;
