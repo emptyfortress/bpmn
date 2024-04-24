@@ -10,7 +10,7 @@ const xml = `
 <bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
 	<bpmn2:process id="process1567044459787" name="流程1567044459787">
 		<bpmn2:documentation>描述</bpmn2:documentation>
-		<bpmn2:startEvent id="StartEvent_1" name="开始"/>
+		<bpmn2:startEvent id="StartEvent_1" name="Старт"/>
 	</bpmn2:process>
 	<bpmndi:BPMNDiagram id="BPMNDiagram_1">
 		<bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process1567044459787">
@@ -25,12 +25,12 @@ const xml = `
 <processType id="test"/></bpmn2:definitions>
 `
 
-const ttt = ref()
+const canvas = ref()
 
 onMounted(() => {
 	const cont = document.getElementById('#canvas')
 	var modeler = new BpmnModeler({
-		container: ttt.value,
+		container: canvas.value,
 		keyboard: {
 			bindTo: window,
 		},
@@ -41,8 +41,8 @@ onMounted(() => {
 		.then(function (result) {
 			const { warnings } = result
 			console.log('success !', warnings)
-			modeler.attachTo(ttt.value)
-			modeler.get(ttt.value).zoom('fit-viewport')
+			modeler.attachTo(canvas.value)
+			// modeler.get(canvas.value).zoom('fit-viewport')
 		})
 		.catch(function (err) {
 			const { warnings, message } = err
@@ -54,14 +54,14 @@ onMounted(() => {
 <template lang="pug">
 q-page(padding)
 	// h2 bpmn
-	#canvas(ref="ttt")
+	.canvas(ref="canvas")
 </template>
 
 <style scoped lang="scss">
 // :deep(.bjs-powered-by) {
 // 	display: none;
 // }
-#canvas {
+.canvas {
 	width: 100%;
 	height: 800px;
 	background: #fff;
