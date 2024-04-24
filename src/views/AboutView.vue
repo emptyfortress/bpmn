@@ -22,7 +22,7 @@ const xml = `
 			</bpmndi:BPMNShape>
 		</bpmndi:BPMNPlane>
 	</bpmndi:BPMNDiagram>
-<processType id="test"/></bpmn2:definitions>
+</bpmn2:definitions>
 `
 
 const canvas = ref()
@@ -42,7 +42,6 @@ onMounted(() => {
 			const { warnings } = result
 			console.log('success !', warnings)
 			modeler.attachTo(canvas.value)
-			// modeler.get(canvas.value).zoom('fit-viewport')
 		})
 		.catch(function (err) {
 			const { warnings, message } = err
