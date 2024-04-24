@@ -2,5 +2,5 @@
 
 <template lang="pug">
 q-page(padding)
-	h2 hello
+	h2 home
 </template>

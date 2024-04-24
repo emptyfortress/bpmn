@@ -5,15 +5,15 @@ const modelValue = defineModel()
 const pages = [
 	{
 		id: 0,
-		title: 'Старт',
+		title: 'Home',
 		icon: 'mdi-home-roof',
 		url: '/',
 	},
 	{
 		id: 1,
 		title: 'BPMN',
-		icon: 'mdi-shuffle-variant',
-		url: '/about',
+		icon: 'mdi-sitemap-outline',
+		url: '/bpmn',
 	},
 ]
 </script>
