@@ -11,8 +11,8 @@ const pages = [
 	},
 	{
 		id: 1,
-		title: 'About',
-		icon: 'mdi-format-size',
+		title: 'BPMN',
+		icon: 'mdi-shuffle-variant',
 		url: '/about',
 	},
 ]
