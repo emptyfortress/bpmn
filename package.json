@@ -16,6 +16,7 @@
     "pinia": "^2.1.7",
     "quasar": "^2.15.3",
     "vue": "^3.4.21",
+    "vue-bpmn-modeler": "^1.2.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
