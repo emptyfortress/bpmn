@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-// import BpmnModeler from 'bpmn-js/lib/Modeler'
-import BpmnViewer from 'bpmn-js'
-// import demo from '@/stores/demo.bpmn'
+import { ref, onMounted } from 'vue'
+import BpmnModeler from 'bpmn-js/lib/Modeler'
+import 'bpmn-js/dist/assets/diagram-js.css'
+import 'bpmn-js/dist/assets/bpmn-js.css'
+import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 
 const xml = `
 <?xml version="1.0" encoding="UTF-8"?>
@@ -24,16 +25,24 @@ const xml = `
 <processType id="test"/></bpmn2:definitions>
 `
 
+const ttt = ref()
+
 onMounted(() => {
-	var viewer = new BpmnViewer({
-		container: '.canvas',
+	const cont = document.getElementById('#canvas')
+	var modeler = new BpmnModeler({
+		container: ttt.value,
+		keyboard: {
+			bindTo: window,
+		},
 	})
-	viewer
+
+	modeler
 		.importXML(xml)
 		.then(function (result) {
 			const { warnings } = result
 			console.log('success !', warnings)
-			viewer.get('canvas').zoom('fit-viewport')
+			modeler.attachTo(ttt.value)
+			modeler.get(ttt.value).zoom('fit-viewport')
 		})
 		.catch(function (err) {
 			const { warnings, message } = err
@@ -44,17 +53,17 @@ onMounted(() => {
 
 <template lang="pug">
 q-page(padding)
-	h2 bpmn
-	.canvas(ref="canvas")
+	// h2 bpmn
+	#canvas(ref="ttt")
 </template>
 
 <style scoped lang="scss">
 // :deep(.bjs-powered-by) {
 // 	display: none;
 // }
-.canvas {
-	width: 900px;
-	height: 700px;
+#canvas {
+	width: 100%;
+	height: 800px;
 	background: #fff;
 }
 </style>
