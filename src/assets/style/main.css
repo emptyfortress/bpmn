@@ -1,2 +1,6 @@
 @import './base.css';
 @import './animation.scss';
+
+body {
+	font-family: Roboto, Arial, Helvetica, san-serif;
+}
