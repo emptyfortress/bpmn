@@ -37,9 +37,9 @@ q-page(padding)
 </template>
 
 <style scoped lang="scss">
-:deep(.bjs-powered-by) {
-	display: none;
-}
+// :deep(.bjs-powered-by) {
+// 	display: none;
+// }
 // :deep(.bpmn-icon-subprocess-expanded) {
 // 	display: none;
 // }
