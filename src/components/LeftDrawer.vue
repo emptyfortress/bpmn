@@ -13,7 +13,13 @@ const pages = [
 		id: 1,
 		title: 'BPMN',
 		icon: 'mdi-sitemap-outline',
-		url: '/bpmn',
+		url: '/bpmn/start',
+	},
+	{
+		id: 2,
+		title: 'Пицца',
+		icon: 'mdi-sitemap-outline',
+		url: '/bpmn/pizza',
 	},
 ]
 </script>

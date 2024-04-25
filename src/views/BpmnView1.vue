@@ -4,7 +4,7 @@ import BpmnModeler from 'bpmn-js/lib/Modeler'
 import 'bpmn-js/dist/assets/diagram-js.css'
 import 'bpmn-js/dist/assets/bpmn-js.css'
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
-import diagram from '@/stores/diagram.bpmn?raw'
+import pizza from '@/stores/pizza.bpmn?raw'
 
 const canvas = ref()
 
@@ -17,7 +17,7 @@ onMounted(() => {
 	})
 
 	modeler
-		.importXML(diagram)
+		.importXML(pizza)
 		.then(function (result) {
 			const { warnings } = result
 			console.log('success !', warnings)

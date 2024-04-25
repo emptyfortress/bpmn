@@ -1,14 +1,30 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onUpdated } from 'vue'
 import BpmnModeler from 'bpmn-js/lib/Modeler'
 import 'bpmn-js/dist/assets/diagram-js.css'
 import 'bpmn-js/dist/assets/bpmn-js.css'
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 import diagram from '@/stores/diagram.bpmn?raw'
+import pizza from '@/stores/pizza.bpmn?raw'
+
+const props = defineProps({
+	id: {
+		type: String,
+		required: true,
+	},
+})
+
+const xml = computed(() => {
+	if (props.id == 'pizza') {
+		return pizza
+	} else if (props.id == 'start') {
+		return diagram
+	}
+})
 
 const canvas = ref()
 
-onMounted(() => {
+onUpdated(() => {
 	var modeler = new BpmnModeler({
 		container: canvas.value,
 		keyboard: {
@@ -17,7 +33,7 @@ onMounted(() => {
 	})
 
 	modeler
-		.importXML(diagram)
+		.importXML(xml.value)
 		.then(function (result) {
 			const { warnings } = result
 			console.log('success !', warnings)
