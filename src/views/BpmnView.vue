@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import BpmnModeler from 'bpmn-js/lib/Modeler'
 import 'bpmn-js/dist/assets/diagram-js.css'
 import 'bpmn-js/dist/assets/bpmn-js.css'
@@ -28,15 +28,6 @@ onMounted(() => {
 			console.log('something went wrong:', warnings, message)
 		})
 })
-const key = ref(0)
-const flip = () => {
-	xml.value = pizza
-	key.value += 1
-}
-const flip1 = () => {
-	xml.value = diagram
-	key.value += 1
-}
 </script>
 
 <template lang="pug">
