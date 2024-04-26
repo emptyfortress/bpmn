@@ -21,6 +21,12 @@ const pages = [
 		icon: 'mdi-sitemap-outline',
 		url: '/bpmn/pizza',
 	},
+	{
+		id: 3,
+		title: 'Flow',
+		icon: 'mdi-sitemap-outline',
+		url: '/flow',
+	},
 ]
 </script>
 

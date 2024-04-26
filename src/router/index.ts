@@ -20,23 +20,22 @@ const router = createRouter({
 		{
 			path: '/bpmn/start',
 			name: 'bpmn',
-			// route level code-splitting
-			// this generates a separate chunk (About.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
 			component: () => import('@/views/BpmnView.vue'),
 			meta: { title: 'Start', transition: 'fade' },
 		},
 		{
 			path: '/bpmn/pizza',
 			name: 'bpmn1',
-			// route level code-splitting
-			// this generates a separate chunk (About.[hash].js) for this route
-			// which is lazy-loaded when the route is visited.
 			component: () => import('@/views/BpmnView1.vue'),
 			meta: { title: 'Пицца', transition: 'fade' },
 		},
+		{
+			path: '/flow',
+			name: 'flow',
+			component: () => import('@/views/Flow.vue'),
+			meta: { title: 'Flow', transition: 'fade' },
+		},
 		{ path: '/:pathMatch(.*)', component: NotFound },
-		// { path: '/:pathMatch(.*)', name: 'bad-not-found', component: NotFound },
 	],
 })
 
