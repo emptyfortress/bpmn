@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import type { Node } from '@vue-flow/core'
-import { VueFlow } from '@vue-flow/core'
+import { VueFlow, Position } from '@vue-flow/core'
 import { Background } from '@vue-flow/background'
 
 import CustomNode from '@/components/nodes/CustomNode.vue'
+import ToolbarNode from '@/components/nodes/ToolbarNode.vue'
 
 const nodes = ref<CustomNode[]>([
 	{
@@ -13,23 +14,24 @@ const nodes = ref<CustomNode[]>([
 		// this will create the node-type `custom`
 		type: 'custom',
 		position: { x: 50, y: 50 },
+		sourcePosition: Position.Right,
 	},
 	{
 		id: '2',
 		label: 'Node 2',
 		// this will create the node-type `special`
 		type: 'special',
+		data: { toolbarPosition: Position.Top },
 		position: { x: 150, y: 50 },
 	},
 
-	{
-		id: '3',
-		label: 'Node 3',
-		// this will throw a type error, as the type is not defined in the CustomEdgeTypes
-		// regardless it would be rendered as a default edge type
-		type: 'invalid',
-		position: { x: 350, y: 50 },
-	},
+	// {
+	// 	id: '3',
+	// 	label: 'Node 3',
+	// 	type: 'invalid',
+	// 	position: { x: 350, y: 50 },
+	// },
+	{ id: 'e1-2', source: '1', target: '2', animated: true },
 ])
 </script>
 
@@ -37,10 +39,13 @@ const nodes = ref<CustomNode[]>([
 q-page(padding)
 	h2 Custom Flow
 	.canvas
-		VueFlow(:nodes="nodes")
+		VueFlow(v-model="nodes")
 			Background(variant="lines" patternColor="#c9e7fb")
 			template(#node-custom="customNodeProps")
 				CustomNode(v-bind="customNodeProps")
+
+			template(#node-toolbar="nodeProps")
+				ToolbarNode(:data="nodeProps.data" :label="nodeProps.label")
 
 </template>
 

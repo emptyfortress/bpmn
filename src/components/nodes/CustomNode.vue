@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { Position, Handle } from '@vue-flow/core'
 import type { NodeProps } from '@vue-flow/core'
-import { Position } from '@vue-flow/core'
 
 const props = defineProps<NodeProps<CustomData, CustomEvents>>()
 // import { CustomData, CustomEvents } from './nodes'
@@ -9,11 +9,11 @@ console.log(props.data.hello)
 
 <template lang="pug">
 .node
-	Handle(type="target" :position="Position.Top")
-	Handle(type="source" :position="Position.Bottom")
+	.label {{ label }}
 	.circle
 		q-icon(name="mdi-play" size="lg")
-	.label {{ label }}
+		// Handle(type="target" :position="Position.Right" )
+		// Handle(type="source" :position="Position.Right" )
 </template>
 
 <style scoped lang="scss">
