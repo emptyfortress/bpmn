@@ -11,19 +11,23 @@ console.log(props.data.hello)
 .node
 	.label {{ label }}
 	.circle
-		q-icon(name="mdi-play" size="lg")
-		// Handle(type="target" :position="Position.Right" )
-		// Handle(type="source" :position="Position.Right" )
+		q-icon(name="mdi-play" size="md")
+	Handle(type="source" :position="Position.Bottom" )
 </template>
 
 <style scoped lang="scss">
+.node {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .circle {
 	background: #fff;
 	padding: 0.5rem 1rem;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	border: 4px solid #333;
+	border: 2px solid #333;
 	position: relative;
 	cursor: default;
 }

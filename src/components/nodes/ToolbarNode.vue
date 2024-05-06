@@ -3,31 +3,39 @@ import { Handle, Position } from '@vue-flow/core'
 import { NodeToolbar } from '@vue-flow/node-toolbar'
 
 defineProps(['data', 'label'])
+
+const emit = defineEmits(['add'])
+
+const add1 = () => {
+	emit('add')
+}
+const edit = () => {
+	console.log(111)
+}
 </script>
 
-<template>
-	<NodeToolbar
-		style="display: flex; gap: 0.5rem; align-items: center"
-		:is-visible="data.toolbarVisible"
-		:position="data.toolbarPosition"
-	>
-		<button>Action1</button>
-		<button>Action2</button>
-		<button>Action3</button>
-	</NodeToolbar>
+<template lang="pug">
+NodeToolbar(
+	:is-visible="data.toolbarVisible"
+	:position="data.toolbarPosition")
 
-	<div :style="{ padding: '10px 20px' }">
-		{{ label }}
-	</div>
+	q-btn(flat round icon="mdi-rectangle-outline" dense @click="add1")
+	q-btn(flat round icon="mdi-rhombus-outline" dense)
+	q-btn(flat round icon="mdi-circle-outline" dense)
+	q-btn(flat round icon="mdi-pencil" dense)
 
-	<Handle
-		type="target"
-		:position="Position.Left"
-	/>
-	<Handle
-		type="source"
-		:position="Position.Right"
-	/>
+label {{ label }}
+
+// q-popup-edit(v-bind="label" auto-save v-slot="scope")
+// 	q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
+
+Handle(type="target" :position="Position.Top")
+Handle(type="source" :position="Position.Bottom")
+
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+label {
+	padding: 1rem;
+}
+</style>
