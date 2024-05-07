@@ -13,10 +13,8 @@ const nodes = ref<StartNode[]>([
 	{
 		id: '1',
 		label: 'Старт',
-		// this will create the node-type `custom`
 		type: 'start',
 		position: { x: 150, y: 50 },
-		// sourcePosition: Position.Bottom,
 		data: {
 			hello: 'fucccc',
 		},
@@ -24,46 +22,56 @@ const nodes = ref<StartNode[]>([
 	{
 		id: '2',
 		label: 'Этап',
-		// this will create the node-type `special`
-		type: 'toolbar',
-		data: { toolbarPosition: Position.Right },
+		type: 'default',
 		position: { x: 120, y: 200 },
-		style: DefaultEtapStyle,
 	},
-
 	{
 		id: '3',
+		label: 'Этап',
+		type: 'toolbar',
+		data: { toolbarPosition: Position.Right },
+		position: { x: 120, y: 300 },
+		style: DefaultEtapStyle,
+	},
+	{
+		id: '4',
 		label: 'Завершение',
 		type: 'end',
-		position: { x: 120, y: 300 },
+		position: { x: 120, y: 400 },
 	},
 	{
 		id: 'e1-2',
 		source: '1',
 		target: '2',
 		animated: true,
-		style: {
-			strokeWidth: '3px',
-		},
 	},
 	{
 		id: 'e2-3',
 		source: '2',
 		target: '3',
 		animated: false,
-		style: {
-			strokeWidth: '3px',
-		},
+	},
+	{
+		id: 'e3-4',
+		source: '3',
+		target: '4',
+		animated: false,
 	},
 ])
 const add = () => {
 	nodes.value.push({
-		id: '3',
-		label: 'lфдыоп',
+		id: '5',
+		label: 'Новый этап',
 		type: 'toolbar',
-		position: { x: 300, y: 50 },
+		position: { x: 300, y: 400 },
 		data: { toolbarPosition: Position.Right },
 		style: DefaultEtapStyle,
+	})
+	nodes.value.push({
+		id: 'e3-5',
+		source: '3',
+		target: '5',
+		animated: false,
 	})
 }
 </script>
@@ -90,7 +98,7 @@ q-page(padding)
 	width: 100%;
 	height: calc(100vh - 150px);
 	background: #fff;
-	border: 1p solid #ccc;
+	border: 1px solid #ccc;
 }
 h2 {
 	padding: 0;

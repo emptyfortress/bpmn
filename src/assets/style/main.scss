@@ -1,0 +1,48 @@
+@import './base.css';
+@import './animation.scss';
+
+/* import the necessary styles for Vue Flow to work */
+@import '@vue-flow/core/dist/style.css';
+
+/* import the default theme, this is optional but generally recommended */
+@import '@vue-flow/core/dist/theme-default.css';
+
+:root {
+	--vf-node-bg: #ededed;
+	--vf-node-text: #222;
+	--vf-connection-path: #b1b1b7;
+	--vf-handle: #555;
+	--node-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3), -1px -1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.vue-flow__node-default {
+	border-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	width: auto;
+	max-width: 200px;
+	font-size: 0.8rem;
+	&.selected {
+		border: 2px solid $primary;
+		background: #fff;
+		box-shadow: var(--node-shadow);
+		&:hover {
+			box-shadow: var(--node-shadow);
+		}
+	}
+	&:hover {
+		cursor: pointer;
+		background: #efefef;
+	}
+}
+
+.vue-flow__edge {
+	.vue-flow__edge-path {
+		stroke-width: 2px;
+		stroke: var(--vf-connection-path);
+	}
+	&.selected {
+		.vue-flow__edge-path {
+			stroke: $primary;
+		}
+	}
+}
