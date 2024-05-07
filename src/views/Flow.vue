@@ -9,15 +9,24 @@ import EndNode from '@/components/nodes/EndNode.vue'
 import ToolbarNode from '@/components/nodes/ToolbarNode.vue'
 import { DefaultEtapStyle } from '@/components/nodes/nodeStyles'
 
-const nodes = ref<StartNode[]>([
+// export interface CustomData {
+// 	hello: string
+// }
+
+// export interface CustomEvents {
+// 	onCustomEvent: (event: MouseEvent) => void
+// }
+//
+// type CustomNodeTypes = 'toolbar' | 'default'
+
+// type CustomNode = Node<CustomData, CustomEvents, CustomNodeTypes>
+
+const nodes = ref<any[]>([
 	{
 		id: '1',
 		label: 'Старт',
 		type: 'start',
 		position: { x: 150, y: 50 },
-		data: {
-			hello: 'fucccc',
-		},
 	},
 	{
 		id: '2',

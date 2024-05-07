@@ -4,7 +4,7 @@ import type { NodeProps } from '@vue-flow/core'
 
 const props = defineProps<NodeProps<CustomData, CustomEvents>>()
 // import { CustomData, CustomEvents } from './nodes'
-console.log(props.data.hello)
+// console.log(props.data.hello)
 </script>
 
 <template lang="pug">

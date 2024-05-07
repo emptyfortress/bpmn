@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Position, Handle } from '@vue-flow/core'
-import type { NodeProps } from '@vue-flow/core'
+// import type { NodeProps } from '@vue-flow/core'
 
-const props = defineProps<NodeProps<CustomData, CustomEvents>>()
+// const props = defineProps<NodeProps<CustomData, CustomEvents>>()
 // import { CustomData, CustomEvents } from './nodes'
-console.log(props.data.hello)
+// console.log(props.data.hello)
 </script>
 
 <template lang="pug">
