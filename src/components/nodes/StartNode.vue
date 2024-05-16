@@ -9,7 +9,7 @@ import { Position, Handle } from '@vue-flow/core'
 
 <template lang="pug">
 .node
-	.label {{ label }}
+	.label Старт
 	.circle
 		q-icon(name="mdi-play" size="md")
 	Handle(type="source" :position="Position.Bottom" )
