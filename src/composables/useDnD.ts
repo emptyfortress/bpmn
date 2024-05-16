@@ -1,5 +1,6 @@
 import { useVueFlow } from '@vue-flow/core'
 import { ref, watch } from 'vue'
+import { DefaultEtapStyle } from '@/components/nodes/nodeStyles'
 
 let id = 0
 
@@ -70,6 +71,7 @@ export default function useDragAndDrop() {
 			type: draggedType.value,
 			position,
 			label: `${nodeId}`,
+			// style: draggedType.value == 'toolbar' ? DefaultEtapStyle : '',
 		}
 
 		const { off } = onNodesInitialized(() => {

@@ -11,7 +11,7 @@ const props = defineProps<NodeProps<CustomData, CustomEvents>>()
 .node
 	.circle
 		q-icon(name="mdi-stop" size="md")
-	.label {{ label }}
+	.label Завершение
 	Handle(type="target" :position="Position.Top" )
 </template>
 

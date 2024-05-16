@@ -9,13 +9,13 @@ aside
 	.circle(:draggable="true" @dragstart="onDragStart($event, 'start')")
 		q-icon(name="mdi-play" size="sm")
 		q-tooltip(anchor="center left" self="center right") Старт
-	.node(draggable="true")
+	.node(:draggable="true" @dragstart="onDragStart($event, 'default')")
 		q-tooltip(anchor="center left" self="center right") Узел
-	.special(draggable="true")
-		q-tooltip(anchor="center left" self="center right") Специальный узел
-	.gate(draggable="true")
+	// .special(:draggable="true" @dragstart="onDragStart($event, 'toolbar')")
+	// 	q-tooltip(anchor="center left" self="center right") Специальный узел
+	.gate(:draggable="true" @dragstart="onDragStart($event, 'start')")
 		q-tooltip(anchor="center left" self="center right") Шлюз
-	.circle(draggable="true")
+	.circle(:draggable="true" @dragstart="onDragStart($event, 'end')")
 		q-icon(name="mdi-stop" size="sm")
 		q-tooltip(anchor="center left" self="center right") Завершение
 </template>
