@@ -38,6 +38,7 @@ const edges = ref<Edge[]>([
 		// label: 'fuck',
 		// animated: true,
 		type: 'smoothstep',
+		// type: 'custom',
 		// markerEnd: {
 		// 	type: MarkerType.ArrowClosed,
 		// 	width: 20,
@@ -55,13 +56,6 @@ onConnect((params) => {
 		},
 	])
 })
-
-const onDrop1 = () => {
-	onDrop()
-}
-const test = () => {
-	console.log(111)
-}
 </script>
 
 <template lang="pug">
@@ -87,8 +81,8 @@ q-page(padding)
 			template(#node-end="customNodeProps")
 				EndNode(v-bind="customNodeProps")
 
-			// template(#edge-custom="customEdgeProps")
-			// 	CustomEdge(v-bind="customEdgeProps")
+			template(#edge-custom="customEdgeProps")
+				CustomEdge(v-bind="customEdgeProps")
 
 		Sidebar
 </template>

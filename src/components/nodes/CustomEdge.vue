@@ -46,13 +46,7 @@ const props = defineProps({
 	},
 })
 
-const arr = MarkerType.arrowClosed
-
-// const { onDragOver, isDragging, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
-const test = () => {
-	console.log(111)
-}
-const path = computed(() => getBezierPath(props))
+// const path = computed(() => getBezierPath(props))
 </script>
 
 <template lang="pug">
@@ -63,7 +57,6 @@ BaseEdge(
 	:target-y="targetY"
 	:source-position="sourcePosition"
 	:target-position="targetPosition"
-	:path="path[0]"
 )
 	slot
 </template>
