@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import type { Node } from '@vue-flow/core'
+import type { Node, Edge } from '@vue-flow/core'
 import { VueFlow, Position, useVueFlow, MarkerType } from '@vue-flow/core'
 import DropZoneBackground from '@/components/nodes/DropZoneBackground.vue'
 import Sidebar from '@/components/nodes/Sidebar.vue'
