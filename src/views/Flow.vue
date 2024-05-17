@@ -46,7 +46,15 @@ const edges = ref<Edge[]>([
 	},
 ])
 
-onConnect(addEdges)
+// onConnect(addEdges)
+onConnect((params) => {
+	addEdges([
+		{
+			type: 'smoothstep',
+			...params,
+		},
+	])
+})
 
 const onDrop1 = () => {
 	onDrop()
