@@ -9,11 +9,14 @@ import { Position, Handle } from '@vue-flow/core'
 
 <template lang="pug">
 .node
-	.label Старт
-	.circle
-		q-icon(name="mdi-play" size="md")
+	// .label Старт
+	.gate
+		// q-icon(name="mdi-play" size="md")
+	Handle(type="source" :position="Position.Left" )
+	Handle(type="source" :position="Position.Right" )
 	Handle(type="source" :position="Position.Bottom" )
-</template>
+	Handle(type="target" :position="Position.Top" )
+	</template>
 
 <style scoped lang="scss">
 .node {
@@ -21,34 +24,32 @@ import { Position, Handle } from '@vue-flow/core'
 	flex-direction: column;
 	align-items: center;
 }
-.circle {
+.gate {
 	background: #ededed;
-	padding: 0.5rem 1rem;
 	width: 50px;
 	height: 50px;
-	border-radius: 50%;
 	border: 2px solid #333;
-	position: relative;
+	transform: rotate(45deg);
 	cursor: pointer;
 }
-.q-icon {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
+// .q-icon {
+// 	position: absolute;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%);
+// }
 .label {
 	margin-top: 0.2rem;
 	text-align: center;
 }
 .selected {
-	.circle {
+	.gate {
 		box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
 		border-color: $primary;
 		background: #fff;
 	}
-	.q-icon {
-		color: $primary;
-	}
+	// .q-icon {
+	// 	color: $primary;
+	// }
 }
 </style>

@@ -22,14 +22,14 @@ const props = defineProps<NodeProps<CustomData, CustomEvents>>()
 	align-items: center;
 }
 .circle {
-	background: #fff;
+	background: #ededed;
 	padding: 0.5rem 1rem;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	border: 4px solid #333;
+	border: 2px solid #333;
 	position: relative;
-	cursor: default;
+	cursor: pointer;
 }
 .q-icon {
 	position: absolute;
@@ -45,6 +45,7 @@ const props = defineProps<NodeProps<CustomData, CustomEvents>>()
 	.circle {
 		box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
 		border-color: $primary;
+		background: #fff;
 	}
 	.q-icon {
 		color: $primary;

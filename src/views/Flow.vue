@@ -8,6 +8,7 @@ import Sidebar from '@/components/nodes/Sidebar.vue'
 import StartNode from '@/components/nodes/StartNode.vue'
 import EndNode from '@/components/nodes/EndNode.vue'
 import ToolbarNode from '@/components/nodes/ToolbarNode.vue'
+import GateNode from '@/components/nodes/GateNode.vue'
 import useDragAndDrop from '@/composables/useDnD'
 // import CustomEdge from '@/components/nodes/CustomEdge.vue'
 
@@ -62,6 +63,9 @@ q-page(padding)
 
 			template(#node-toolbar="nodeProps")
 				ToolbarNode(:data="nodeProps.data" :label="nodeProps.label" @add="add")
+
+			template(#node-gate="customNodeProps")
+				GateNode(v-bind="customNodeProps")
 
 			template(#node-end="customNodeProps")
 				EndNode(v-bind="customNodeProps")

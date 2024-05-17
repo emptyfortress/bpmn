@@ -13,7 +13,7 @@ aside
 		q-tooltip(anchor="center left" self="center right") Узел
 	// .special(:draggable="true" @dragstart="onDragStart($event, 'toolbar')")
 	// 	q-tooltip(anchor="center left" self="center right") Специальный узел
-	.gate(:draggable="true" @dragstart="onDragStart($event, 'start')")
+	.gate(:draggable="true" @dragstart="onDragStart($event, 'gate')")
 		q-tooltip(anchor="center left" self="center right") Шлюз
 	.circle(:draggable="true" @dragstart="onDragStart($event, 'end')")
 		q-icon(name="mdi-stop" size="sm")
