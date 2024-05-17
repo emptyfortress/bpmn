@@ -10,7 +10,7 @@ import EndNode from '@/components/nodes/EndNode.vue'
 import ToolbarNode from '@/components/nodes/ToolbarNode.vue'
 import GateNode from '@/components/nodes/GateNode.vue'
 import useDragAndDrop from '@/composables/useDnD'
-// import CustomEdge from '@/components/nodes/CustomEdge.vue'
+import CustomEdge from '@/components/nodes/CustomEdge.vue'
 
 const { onDragOver, isDragging, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
 const { onConnect, addEdges } = useVueFlow()
@@ -26,7 +26,7 @@ const nodes = ref<Node[]>([
 		id: '2',
 		label: 'Завершение',
 		type: 'end',
-		position: { x: 130, y: 400 },
+		position: { x: 530, y: 400 },
 	},
 ])
 
@@ -35,16 +35,25 @@ const edges = ref<Edge[]>([
 		id: 'e1-2',
 		source: '1',
 		target: '2',
-		animated: true,
-		markerEnd: {
-			type: MarkerType.ArrowClosed,
-			width: 20,
-			height: 20,
-		},
+		// label: 'fuck',
+		// animated: true,
+		type: 'smoothstep',
+		// markerEnd: {
+		// 	type: MarkerType.ArrowClosed,
+		// 	width: 20,
+		// 	height: 20,
+		// },
 	},
 ])
 
 onConnect(addEdges)
+
+const onDrop1 = () => {
+	onDrop()
+}
+const test = () => {
+	console.log(111)
+}
 </script>
 
 <template lang="pug">
@@ -71,7 +80,7 @@ q-page(padding)
 				EndNode(v-bind="customNodeProps")
 
 			// template(#edge-custom="customEdgeProps")
-			// 	CustomEdge(:style="{ backgroundColor: '#ff0000'}")
+			// 	CustomEdge(v-bind="customEdgeProps")
 
 		Sidebar
 </template>
