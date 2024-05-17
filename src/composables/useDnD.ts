@@ -20,7 +20,7 @@ export default function useDragAndDrop() {
 	const { addNodes, screenToFlowCoordinate, onNodesInitialized, updateNode } = useVueFlow()
 
 	watch(isDragging, (dragging) => {
-		document.body.style.userSelect = dragging ? 'none' : ''
+		document.body.style.userSelect = dragging ? 'none' : 'auto'
 	})
 
 	function onDragStart(event: DragEvent, type: any) {

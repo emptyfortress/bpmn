@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { Node } from '@vue-flow/core'
-import { VueFlow, Position, useVueFlow } from '@vue-flow/core'
+import { VueFlow, Position, useVueFlow, MarkerType } from '@vue-flow/core'
 import DropZoneBackground from '@/components/nodes/DropZoneBackground.vue'
 import Sidebar from '@/components/nodes/Sidebar.vue'
 
 import StartNode from '@/components/nodes/StartNode.vue'
 import EndNode from '@/components/nodes/EndNode.vue'
 import ToolbarNode from '@/components/nodes/ToolbarNode.vue'
-// import { DefaultEtapStyle } from '@/components/nodes/nodeStyles'
-
 import useDragAndDrop from '@/composables/useDnD'
+// import CustomEdge from '@/components/nodes/CustomEdge.vue'
 
-const { onDragOver, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
+const { onDragOver, isDragging, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
 const { onConnect, addEdges } = useVueFlow()
 
 const nodes = ref<Node[]>([
@@ -28,11 +27,19 @@ const nodes = ref<Node[]>([
 		type: 'end',
 		position: { x: 130, y: 400 },
 	},
+])
+
+const edges = ref<Edge[]>([
 	{
 		id: 'e1-2',
 		source: '1',
 		target: '2',
-		animated: false,
+		animated: true,
+		markerEnd: {
+			type: MarkerType.ArrowClosed,
+			width: 20,
+			height: 20,
+		},
 	},
 ])
 
@@ -41,9 +48,14 @@ onConnect(addEdges)
 
 <template lang="pug">
 q-page(padding)
-	h2(@click="add") Custom Flow
+	h2 Custom Flow
 	.canvas(@drop="onDrop")
-		VueFlow(:nodes="nodes" @dragover="onDragOver" @dragleave="onDragLeave")
+		VueFlow(
+			:nodes="nodes"
+			:edges="edges"
+			@dragover="onDragOver"
+			@dragleave="onDragLeave"
+			)
 			DropZoneBackground(:style="{ backgroundColor: isDragOver ? '#e7f3ff' : 'transparent', transition: 'background-color 0.2s ease', }")
 			template(#node-start="customNodeProps")
 				StartNode(v-bind="customNodeProps")
@@ -53,6 +65,10 @@ q-page(padding)
 
 			template(#node-end="customNodeProps")
 				EndNode(v-bind="customNodeProps")
+
+			// template(#edge-custom="customEdgeProps")
+			// 	CustomEdge(:style="{ backgroundColor: '#ff0000'}")
+
 		Sidebar
 </template>
 
@@ -68,5 +84,8 @@ h2 {
 	padding: 0;
 	font-size: 1.7rem;
 	line-height: 1;
+}
+:deep(.vue-flow__node.intersecting) {
+	background-color: #ff0;
 }
 </style>
