@@ -6,17 +6,17 @@ const { onDragStart } = useDragAndDrop()
 
 <template lang="pug">
 aside
-	.circle(:draggable="true" @dragstart="onDragStart($event, 'start')")
-		q-icon(name="mdi-play" size="sm")
+	.start(:draggable="true" @dragstart="onDragStart($event, 'start')")
+		img(src="@/assets/img/start.svg")
 		q-tooltip(anchor="center left" self="center right") Старт
 	.node(:draggable="true" @dragstart="onDragStart($event, 'default')")
+		img(src="@/assets/img/node.svg")
 		q-tooltip(anchor="center left" self="center right") Узел
-	// .special(:draggable="true" @dragstart="onDragStart($event, 'toolbar')")
-	// 	q-tooltip(anchor="center left" self="center right") Специальный узел
 	.gate(:draggable="true" @dragstart="onDragStart($event, 'gate')")
+		img(src="@/assets/img/gate.svg")
 		q-tooltip(anchor="center left" self="center right") Шлюз
-	.circle(:draggable="true" @dragstart="onDragStart($event, 'end')")
-		q-icon(name="mdi-stop" size="sm")
+	.end(:draggable="true" @dragstart="onDragStart($event, 'end')")
+		img(src="@/assets/img/end.svg")
 		q-tooltip(anchor="center left" self="center right") Завершение
 </template>
 
@@ -33,34 +33,5 @@ aside {
 	flex-direction: column;
 	gap: 1rem;
 	align-items: center;
-}
-.node {
-	width: 100%;
-	height: 30px;
-	border: 2px solid #333;
-	border-radius: 6px;
-	background: #fff;
-}
-.special {
-	width: 100%;
-	height: 20px;
-	background: #ef467e;
-	border-radius: 10px;
-}
-.circle {
-	background: #fff;
-	text-align: center;
-	padding-top: 2px;
-	width: 35px;
-	height: 35px;
-	border-radius: 100%;
-	border: 2px solid #333;
-}
-.gate {
-	width: 28px;
-	height: 28px;
-	border: 2px solid #333;
-	transform: rotate(45deg);
-	background: #fff;
 }
 </style>
