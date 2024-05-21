@@ -74,7 +74,7 @@ onConnect((params) => {
 })
 const add = () => {
 	isEditName.value = false
-	addDefault(posX, posY)
+	addDefault(posX.value, posY.value)
 	label.value = ''
 }
 const calcPosition = computed(() => {
