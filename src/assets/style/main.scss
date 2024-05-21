@@ -22,17 +22,14 @@
 	max-width: 200px;
 	font-size: 0.8rem;
 	&.selected {
-		border: 2px solid $primary;
 		background: #fff;
 		box-shadow: var(--node-shadow);
-		&:hover {
-			box-shadow: var(--node-shadow);
-		}
+		border: 2px solid $primary;
 	}
-	&:hover {
-		cursor: pointer;
-		background: #efefef;
-	}
+}
+.vue-flow__node-default.selectable:hover {
+	box-shadow: var(--node-shadow);
+	cursor: pointer;
 }
 
 .vue-flow__edge {
