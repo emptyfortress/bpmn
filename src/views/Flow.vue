@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import type { Node, Edge } from '@vue-flow/core'
 import { VueFlow, Position, useVueFlow, MarkerType } from '@vue-flow/core'
 import DropZoneBackground from '@/components/nodes/DropZoneBackground.vue'
@@ -12,7 +12,18 @@ import GateNode from '@/components/nodes/GateNode.vue'
 import useDragAndDrop from '@/composables/useDnD'
 import CustomEdge from '@/components/nodes/CustomEdge.vue'
 
-const { onDragOver, isDragging, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
+const {
+	onDragOver,
+	isDragging,
+	onDrop,
+	onDragLeave,
+	isDragOver,
+	isEditName,
+	posX,
+	posY,
+	label,
+	addDefault,
+} = useDragAndDrop()
 const { onConnect, addEdges } = useVueFlow()
 
 const nodes = ref<Node[]>([
@@ -26,7 +37,7 @@ const nodes = ref<Node[]>([
 		id: '2',
 		label: 'Завершение',
 		type: 'end',
-		position: { x: 530, y: 400 },
+		position: { x: 132, y: 400 },
 	},
 ])
 
@@ -39,11 +50,11 @@ const edges = ref<Edge[]>([
 		// animated: true,
 		type: 'smoothstep',
 		// type: 'custom',
-		// markerEnd: {
-		// 	type: MarkerType.ArrowClosed,
-		// 	width: 20,
-		// 	height: 20,
-		// },
+		markerEnd: {
+			type: MarkerType.ArrowClosed,
+			width: 20,
+			height: 20,
+		},
 	},
 ])
 
@@ -52,10 +63,28 @@ onConnect((params) => {
 	addEdges([
 		{
 			type: 'smoothstep',
+			markerEnd: {
+				type: MarkerType.ArrowClosed,
+				width: 20,
+				height: 20,
+			},
 			...params,
 		},
 	])
 })
+const add = () => {
+	isEditName.value = false
+	addDefault(posX, posY)
+	label.value = ''
+}
+const calcPosition = computed(() => {
+	return 'top: ' + (posY.value - 20) + 'px; left: ' + (posX.value - 50) + 'px;'
+})
+
+const clean = () => {
+	isEditName.value = false
+	label.value = ''
+}
 </script>
 
 <template lang="pug">
@@ -68,7 +97,9 @@ q-page(padding)
 			@dragover="onDragOver"
 			@dragleave="onDragLeave"
 			)
+
 			DropZoneBackground(:style="{ backgroundColor: isDragOver ? '#e7f3ff' : 'transparent', transition: 'background-color 0.2s ease', }")
+
 			template(#node-start="customNodeProps")
 				StartNode(v-bind="customNodeProps")
 
@@ -82,9 +113,20 @@ q-page(padding)
 				EndNode(v-bind="customNodeProps")
 
 			template(#edge-custom="customEdgeProps")
-				CustomEdge(v-bind="customEdgeProps")
+				CustomEdge(v-bind="customEdgeProps" @dragover="test")
 
 		Sidebar
+		q-input(v-if="isEditName"
+			:style="calcPosition"
+			autofocus
+			v-model="label"
+			dense
+			outlined
+			@keyup.enter="add"
+			@keyup.delete="clean"
+			@keyup.esc="clean"
+			@blur="clean"
+			bg-color="white")
 </template>
 
 <style scoped lang="scss">
@@ -94,6 +136,11 @@ q-page(padding)
 	background: #fff;
 	border: 1px solid #ccc;
 	position: relative;
+}
+.q-input {
+	position: absolute;
+	top: 1rem;
+	left: 5rem;
 }
 h2 {
 	padding: 0;

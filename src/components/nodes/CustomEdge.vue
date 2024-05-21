@@ -47,10 +47,13 @@ const props = defineProps({
 })
 
 // const path = computed(() => getBezierPath(props))
+const test = () => {
+	console.log(111)
+}
 </script>
 
 <template lang="pug">
-BaseEdge(
+BezierEdge(
 	:source-x="sourceX"
 	:source-y="sourceY"
 	:target-x="targetX"

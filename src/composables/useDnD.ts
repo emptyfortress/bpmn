@@ -1,6 +1,5 @@
 import { useVueFlow } from '@vue-flow/core'
 import { ref, watch } from 'vue'
-import { DefaultEtapStyle } from '@/components/nodes/nodeStyles'
 
 let id = 0
 
@@ -12,10 +11,14 @@ const state = {
 	draggedType: ref(),
 	isDragOver: ref(false),
 	isDragging: ref(false),
+	isEditName: ref(false),
+	posX: ref(0),
+	posY: ref(0),
+	label: ref(''),
 }
 
 export default function useDragAndDrop() {
-	const { draggedType, isDragOver, isDragging } = state
+	const { draggedType, isDragOver, isDragging, isEditName, posX, posY, label } = state
 
 	const { addNodes, screenToFlowCoordinate, onNodesInitialized, updateNode } = useVueFlow()
 
@@ -23,7 +26,7 @@ export default function useDragAndDrop() {
 		document.body.style.userSelect = dragging ? 'none' : 'auto'
 	})
 
-	function onDragStart(event: DragEvent, type: any) {
+	function onDragStart(event: DragEvent, type: string) {
 		if (event.dataTransfer) {
 			event.dataTransfer.setData('application/vueflow', type)
 			event.dataTransfer.effectAllowed = 'move'
@@ -64,6 +67,14 @@ export default function useDragAndDrop() {
 			y: event.clientY,
 		})
 
+		if (draggedType.value == 'default') {
+			isEditName.value = true
+			posX.value = position.x
+			posY.value = position.y
+		} else addNode(position)
+	}
+
+	function addNode(position: any) {
 		const nodeId = getId()
 
 		const newNode = {
@@ -71,9 +82,33 @@ export default function useDragAndDrop() {
 			type: draggedType.value,
 			position,
 			label: `${nodeId}`,
-			// style: draggedType.value == 'toolbar' ? DefaultEtapStyle : '',
 		}
 
+		const { off } = onNodesInitialized(() => {
+			updateNode(nodeId, (node) => ({
+				position: {
+					x: node.position.x - node.dimensions.width / 2,
+					y: node.position.y - node.dimensions.height / 2,
+				},
+			}))
+
+			off()
+		})
+		addNodes(newNode)
+	}
+
+	function addDefault(x: number, y: number) {
+		const nodeId = getId()
+
+		const newNode = {
+			id: nodeId,
+			type: draggedType.value,
+			position: {
+				x: x,
+				y: y,
+			},
+			label: label.value,
+		}
 		const { off } = onNodesInitialized(() => {
 			updateNode(nodeId, (node) => ({
 				position: {
@@ -96,5 +131,10 @@ export default function useDragAndDrop() {
 		onDragLeave,
 		onDragOver,
 		onDrop,
+		isEditName,
+		posX,
+		posY,
+		label,
+		addDefault,
 	}
 }
