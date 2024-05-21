@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import type { Node, Edge } from '@vue-flow/core'
 import { VueFlow, Position, useVueFlow, MarkerType } from '@vue-flow/core'
 import DropZoneBackground from '@/components/nodes/DropZoneBackground.vue'
@@ -29,7 +29,7 @@ const {
 	addDefault,
 } = useDragAndDrop()
 
-const { onConnect, addEdges } = useVueFlow()
+const { onConnect, addEdges, useNode } = useVueFlow()
 
 onConnect((params) => {
 	addEdges([
@@ -60,9 +60,13 @@ const clean = () => {
 const changeEdge = (event: Event) => {
 	console.log(event.edge.id)
 }
-const select = (e: Node) => {
-	console.log(e.node)
-	// e.node.label = 'fuck'
+const flow = ref(null)
+
+const select = () => {
+	store.setSelected(flow.value.getSelectedNodes)
+}
+const deselect = () => {
+	store.setSelected(null)
 }
 </script>
 
@@ -72,12 +76,14 @@ q-page(padding)
 	.grid
 		.canvas(@drop="onDrop")
 			VueFlow(
+				ref="flow"
 				:nodes="store.nodes"
 				:edges="store.edges"
 				@dragover="onDragOver"
 				@dragleave="onDragLeave"
 				@edge-click="changeEdge"
 				@node-click="select"
+				@pane-click="deselect"
 				)
 
 				DropZoneBackground(:style="{ backgroundColor: isDragOver ? '#e7f3ff' : 'transparent', transition: 'background-color 0.2s ease', }")
