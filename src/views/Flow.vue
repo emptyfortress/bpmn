@@ -28,8 +28,7 @@ const {
 	label,
 	addDefault,
 } = useDragAndDrop()
-
-const { onConnect, addEdges, useNode } = useVueFlow()
+const { onConnect, addEdges } = useVueFlow()
 
 onConnect((params) => {
 	addEdges([
@@ -58,12 +57,12 @@ const clean = () => {
 	label.value = ''
 }
 const changeEdge = (event: Event) => {
-	console.log(event.edge.id)
+	console.log(event)
 }
-const flow = ref(null)
+const flow = ref()
 
 const select = () => {
-	store.setSelected(flow.value.getSelectedNodes)
+	store.setSelected(flow.value?.getSelectedNodes)
 }
 const deselect = () => {
 	store.setSelected(null)

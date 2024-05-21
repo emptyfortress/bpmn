@@ -42,7 +42,7 @@ export const useNodesStore = defineStore('node', () => {
 
 	const selected: Ref<Node | null> = ref(null)
 
-	const setSelected = (e: any) => {
+	const setSelected = (e: null | Node) => {
 		selected.value = e
 	}
 
