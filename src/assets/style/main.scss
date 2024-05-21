@@ -43,3 +43,13 @@
 		}
 	}
 }
+.q-splitter--vertical.q-splitter--workable > .q-splitter__separator {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+.q-splitter__separator {
+	&:hover,
+	&:active {
+		border-left: 2px dotted $secondary;
+	}
+}

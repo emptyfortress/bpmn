@@ -68,56 +68,60 @@ const select = () => {
 const deselect = () => {
 	store.setSelected(null)
 }
+const split = ref(70)
 </script>
 
 <template lang="pug">
 q-page(padding)
 	h2 Custom Flow
-	.grid
-		.canvas(@drop="onDrop")
-			VueFlow(
-				ref="flow"
-				:nodes="store.nodes"
-				:edges="store.edges"
-				@dragover="onDragOver"
-				@dragleave="onDragLeave"
-				@edge-click="changeEdge"
-				@node-click="select"
-				@pane-click="deselect"
-				)
 
-				DropZoneBackground(:style="{ backgroundColor: isDragOver ? '#e7f3ff' : 'transparent', transition: 'background-color 0.2s ease', }")
+	q-splitter.q-mt-lg(v-model="split")
+		template(v-slot:before)
+			.canvas(@drop="onDrop")
+				VueFlow(
+					ref="flow"
+					:nodes="store.nodes"
+					:edges="store.edges"
+					@dragover="onDragOver"
+					@dragleave="onDragLeave"
+					@edge-click="changeEdge"
+					@node-click="select"
+					@pane-click="deselect"
+					)
 
-				template(#node-start="customNodeProps")
-					StartNode(v-bind="customNodeProps")
+					DropZoneBackground(:style="{ backgroundColor: isDragOver ? '#e7f3ff' : 'transparent', transition: 'background-color 0.2s ease', }")
 
-				template(#node-toolbar="nodeProps")
-					ToolbarNode(:data="nodeProps.data" :label="nodeProps.label" @add="add")
+					template(#node-start="customNodeProps")
+						StartNode(v-bind="customNodeProps")
 
-				template(#node-gate="customNodeProps")
-					GateNode(v-bind="customNodeProps")
+					template(#node-toolbar="nodeProps")
+						ToolbarNode(:data="nodeProps.data" :label="nodeProps.label" @add="add")
 
-				template(#node-end="customNodeProps")
-					EndNode(v-bind="customNodeProps")
+					template(#node-gate="customNodeProps")
+						GateNode(v-bind="customNodeProps")
 
-				template(#edge-custom="customEdgeProps")
-					CustomEdge(v-bind="customEdgeProps" @dragover="test")
+					template(#node-end="customNodeProps")
+						EndNode(v-bind="customNodeProps")
 
-			Sidebar
-			q-input(v-if="isEditName"
-				:style="calcPosition"
-				autofocus
-				v-model="label"
-				dense
-				outlined
-				@keyup.enter="add"
-				@keyup.delete="clean"
-				@keyup.esc="clean"
-				@blur="clean"
-				bg-color="white")
+					template(#edge-custom="customEdgeProps")
+						CustomEdge(v-bind="customEdgeProps" @dragover="test")
 
-		q-card.panel(flat square)
-			PropertyPanel
+				Sidebar
+				q-input(v-if="isEditName"
+					:style="calcPosition"
+					autofocus
+					v-model="label"
+					dense
+					outlined
+					@keyup.enter="add"
+					@keyup.delete="clean"
+					@keyup.esc="clean"
+					@blur="clean"
+					bg-color="white")
+
+		template(v-slot:after)
+			q-card()
+				PropertyPanel
 </template>
 
 <style scoped lang="scss">
@@ -142,6 +146,11 @@ h2 {
 	padding: 0;
 	font-size: 1.7rem;
 	line-height: 1;
+}
+.q-card {
+	padding: 1rem;
+	border: 1px solid #ccc;
+	height: calc(100vh - 150px);
 }
 // :deep(.vue-flow__node.intersecting) {
 // 	background-color: #ff0;

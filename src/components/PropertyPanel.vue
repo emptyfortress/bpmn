@@ -5,8 +5,8 @@ const store = useNodesStore()
 </script>
 
 <template lang="pug">
-h2(v-if="!!store.selected") hello
-// pre {{ store.selected }}
+
+.text-h6(v-if="!!store.selected") {{store.selected[0].label}}
 </template>
 
 <style scoped lang="scss"></style>
