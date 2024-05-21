@@ -24,6 +24,7 @@ const {
 	label,
 	addDefault,
 } = useDragAndDrop()
+
 const { onConnect, addEdges } = useVueFlow()
 
 const nodes = ref<Node[]>([
@@ -46,10 +47,7 @@ const edges = ref<Edge[]>([
 		id: 'e1-2',
 		source: '1',
 		target: '2',
-		// label: 'fuck',
-		// animated: true,
 		type: 'smoothstep',
-		// type: 'custom',
 		markerEnd: {
 			type: MarkerType.ArrowClosed,
 			width: 20,
@@ -85,6 +83,13 @@ const clean = () => {
 	isEditName.value = false
 	label.value = ''
 }
+const changeEdge = (event: Event) => {
+	console.log(event.edge.id)
+	// event.edge.type = 'default'
+	// edges.value.map((edge) => ({
+	// 	edge.type = 'smoothstep'
+	// }))
+}
 </script>
 
 <template lang="pug">
@@ -96,6 +101,7 @@ q-page(padding)
 			:edges="edges"
 			@dragover="onDragOver"
 			@dragleave="onDragLeave"
+			@edge-click="changeEdge"
 			)
 
 			DropZoneBackground(:style="{ backgroundColor: isDragOver ? '#e7f3ff' : 'transparent', transition: 'background-color 0.2s ease', }")
